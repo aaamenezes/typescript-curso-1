@@ -4,7 +4,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+import { domInjector } from "../decorators/dom-injector.js";
 import { execTimeLogin } from "../decorators/exec-time-login.js";
+import { inspect } from "../decorators/inspect.js";
 import { WeekDays } from "../enums/week-days.js";
 import { Trade } from "../models/trade.js";
 import { Trades } from "../models/trades.js";
@@ -13,11 +15,8 @@ import { TradesTable } from "../views/trades-table.js";
 export class TradeController {
     constructor() {
         this.trades = new Trades([]);
-        this.tradesTable = new TradesTable("#trades-table", true);
+        this.tradesTable = new TradesTable("#trades-table");
         this.snackbar = new Snackbar("#snackbar");
-        this.inputDate = document.querySelector("#date");
-        this.inputQuantity = document.querySelector("#quantity");
-        this.inputValue = document.querySelector("#value");
         this.tradesTable.update(this.trades);
     }
     add() {
@@ -48,5 +47,15 @@ export class TradeController {
     }
 }
 __decorate([
+    domInjector("#date")
+], TradeController.prototype, "inputDate", void 0);
+__decorate([
+    domInjector("#quantity")
+], TradeController.prototype, "inputQuantity", void 0);
+__decorate([
+    domInjector("#value")
+], TradeController.prototype, "inputValue", void 0);
+__decorate([
+    inspect,
     execTimeLogin()
 ], TradeController.prototype, "add", null);

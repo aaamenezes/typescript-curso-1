@@ -1,4 +1,6 @@
+import { domInjector } from "../decorators/dom-injector.js";
 import { execTimeLogin } from "../decorators/exec-time-login.js";
+import { inspect } from "../decorators/inspect.js";
 import { WeekDays } from "../enums/week-days.js";
 import { Trade } from "../models/trade.js";
 import { Trades } from "../models/trades.js";
@@ -6,20 +8,22 @@ import { Snackbar } from "../views/snackbar.js";
 import { TradesTable } from "../views/trades-table.js";
 
 export class TradeController {
+  @domInjector("#date")
   private inputDate: HTMLInputElement;
+  @domInjector("#quantity")
   private inputQuantity: HTMLInputElement;
+  @domInjector("#value")
   private inputValue: HTMLInputElement;
+
   private trades = new Trades([]);
-  private tradesTable = new TradesTable("#trades-table", true);
+  private tradesTable = new TradesTable("#trades-table");
   private snackbar = new Snackbar("#snackbar");
 
   constructor() {
-    this.inputDate = document.querySelector("#date") as HTMLInputElement;
-    this.inputQuantity = <HTMLInputElement>document.querySelector("#quantity");
-    this.inputValue = <HTMLInputElement>document.querySelector("#value");
     this.tradesTable.update(this.trades);
   }
 
+  @inspect
   @execTimeLogin()
   public add(): void {
     const trade = Trade.createFrom(
