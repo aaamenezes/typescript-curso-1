@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Negociações</title>
+    <link rel="stylesheet" href="css/bootstrap.css" />
+  </head>
+
+  <body class="container">
+    <h1 class="text-center">Negociações</h1>
+
+    <form class="form">
+      <div class="form-group">
+        <label for="data">Data</label>
+        <input
+          type="date"
+          id="date"
+          class="form-control"
+          value="1992-08-25"
+          required
+          autofocus
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="quantidade">Quantidade</label>
+        <input
+          type="number"
+          min="1"
+          step="1"
+          id="quantity"
+          class="form-control"
+          value="100"
+          required
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="valor">Valor</label>
+        <input
+          id="value"
+          type="number"
+          class="form-control"
+          min="0.01"
+          step="0.01"
+          value="10"
+          required
+        />
+      </div>
+
+      <button class="btn btn-primary" type="submit">Incluir</button>
+    </form>
+    <br />
+    <div id="snackbar"></div>
+    <br />
+    <div id="trades-table"></div>
+    <script type="module" src="js/app.js"></script>
+  </body>
+</html>
