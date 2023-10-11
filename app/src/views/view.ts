@@ -1,3 +1,5 @@
+import { execTimeLogin } from "../decorators/exec-time-login.js";
+
 export abstract class View<T> {
   protected element: HTMLElement;
   private escape = false;
@@ -17,6 +19,7 @@ export abstract class View<T> {
 
   protected abstract template(model: T): string;
 
+  @execTimeLogin()
   public update(model: T): void {
     const template = this.escape
       ? this.template(model).replace(/<script>[\s\S]*?<\/script>/, "")
