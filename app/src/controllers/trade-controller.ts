@@ -4,6 +4,7 @@ import { inspect } from "../decorators/inspect.js";
 import { WeekDays } from "../enums/week-days.js";
 import { Trade } from "../models/trade.js";
 import { Trades } from "../models/trades.js";
+import { TradesService } from "../services/trades-service.js";
 import { Snackbar } from "../views/snackbar.js";
 import { TradesTable } from "../views/trades-table.js";
 
@@ -18,6 +19,7 @@ export class TradeController {
   private trades = new Trades([]);
   private tradesTable = new TradesTable("#trades-table");
   private snackbar = new Snackbar("#snackbar");
+  private tradesService = new TradesService();
 
   constructor() {
     this.tradesTable.update(this.trades);
@@ -46,6 +48,15 @@ export class TradeController {
     this.inputQuantity.value = "";
     this.inputValue.value = "";
     this.inputDate.focus();
+  }
+
+  importData(): void {
+    this.tradesService.getDailyTrades().then((formattedTrades) => {
+      for (let trade of formattedTrades) {
+        this.trades.add(trade);
+      }
+      this.tradesTable.update(this.trades);
+    });
   }
 
   private updateView(): void {
