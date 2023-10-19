@@ -16,7 +16,20 @@ export class Trade {
     get volume() {
         return this._quantity * this._value;
     }
+    toText() {
+        return `
+      Data: ${this.date}
+      Quantidade: ${this.quantity}
+      Valor: ${this.value}
+    `;
+    }
+    isEqual(trade) {
+        return (this.date.getDate() === trade.date.getDate() &&
+            this.date.getMonth() === trade.date.getMonth() &&
+            this.date.getFullYear() === trade.date.getFullYear());
+    }
     static createFrom(date, quantity, value) {
         return new Trade(new Date(date.split("-").join(",")), Number(quantity), Number(value));
     }
 }
+//# sourceMappingURL=trade.js.map

@@ -8,3 +8,4 @@ export class Snackbar extends View {
     `;
     }
 }
+//# sourceMappingURL=snackbar.js.map

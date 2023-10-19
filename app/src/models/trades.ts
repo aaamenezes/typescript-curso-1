@@ -1,6 +1,7 @@
+import { Model } from "../interfaces/model.js";
 import { Trade } from "./trade.js";
 
-export class Trades {
+export class Trades implements Model<Trades> {
   private trades: Array<Trade> = [];
 
   constructor(trades: Array<Trade>) {
@@ -13,5 +14,13 @@ export class Trades {
 
   public getTradesList(): ReadonlyArray<Trade> {
     return this.trades;
+  }
+
+  public toText(): string {
+    return JSON.stringify(this.trades, null, 2);
+  }
+
+  public isEqual(trades: Trades): boolean {
+    return JSON.stringify(this.trades) === JSON.stringify(trades);
   }
 }

@@ -1,6 +1,3 @@
-import { execTimeLogin } from "../decorators/exec-time-login.js";
-import { inspect } from "../decorators/inspect.js";
-
 export abstract class View<T> {
   protected element: HTMLElement;
   // private escape = false;

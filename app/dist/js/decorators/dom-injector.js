@@ -9,3 +9,4 @@ export function domInjector(selector) {
         Object.defineProperty(target, propertyKey, { get: getter });
     };
 }
+//# sourceMappingURL=dom-injector.js.map

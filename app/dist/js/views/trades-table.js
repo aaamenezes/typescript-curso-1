@@ -36,3 +36,4 @@ export class TradesTable extends View {
 __decorate([
     escape
 ], TradesTable.prototype, "template", null);
+//# sourceMappingURL=trades-table.js.map

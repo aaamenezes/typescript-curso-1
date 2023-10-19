@@ -1,4 +1,6 @@
-export class Trade {
+import { Model } from "../interfaces/model.js";
+
+export class Trade implements Model<Trade> {
   constructor(
     private _date: Date,
     private _quantity: number,
@@ -19,6 +21,22 @@ export class Trade {
 
   get volume(): number {
     return this._quantity * this._value;
+  }
+
+  public toText(): string {
+    return `
+      Data: ${this.date}
+      Quantidade: ${this.quantity}
+      Valor: ${this.value}
+    `;
+  }
+
+  public isEqual(trade: Trade): boolean {
+    return (
+      this.date.getDate() === trade.date.getDate() &&
+      this.date.getMonth() === trade.date.getMonth() &&
+      this.date.getFullYear() === trade.date.getFullYear()
+    );
   }
 
   public static createFrom(
